@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "bc2377c7-1236-4204-b26c-cad9a6153358",
+		"name": "All",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27851309",
+		"_collection_link": "https://galactic-resonance-338042.postman.co/workspace/My~ded16852-ddb0-490b-8222-a3fed5505708/collection/27851309-bc2377c7-1236-4204-b26c-cad9a6153358?action=share&source=collection_link&creator=27851309"
+	},
+	"item": [
+		{
+			"name": "Newsapi",
+			"item": [
+				{
+					"name": "Get Everything",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://newsapi.org/v2/everything?q=keyword&apiKey={{news_api_key}}",
+							"protocol": "https",
+							"host": [
+								"newsapi",
+								"org"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "keyword"
+								},
+								{
+									"key": "apiKey",
+									"value": "{{news_api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top-headlines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://newsapi.org/v2/top-headlines?country=ua&apiKey={{news_api_key}}",
+							"protocol": "https",
+							"host": [
+								"newsapi",
+								"org"
+							],
+							"path": [
+								"v2",
+								"top-headlines"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "ua"
+								},
+								{
+									"key": "apiKey",
+									"value": "{{news_api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top-headlines Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://newsapi.org/v2/top-headlines/sources?apiKey={{news_api_key}}",
+							"protocol": "https",
+							"host": [
+								"newsapi",
+								"org"
+							],
+							"path": [
+								"v2",
+								"top-headlines",
+								"sources"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": "{{news_api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "weather",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Kyiv,UA?key={{Weatherapi}}",
+							"protocol": "https",
+							"host": [
+								"weather",
+								"visualcrossing",
+								"com"
+							],
+							"path": [
+								"VisualCrossingWebServices",
+								"rest",
+								"services",
+								"timeline",
+								"Kyiv,UA"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Weatherapi}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London,UK/2020-10-01/2020-12-31?key={{Weatherapi}}",
+							"protocol": "https",
+							"host": [
+								"weather",
+								"visualcrossing",
+								"com"
+							],
+							"path": [
+								"VisualCrossingWebServices",
+								"rest",
+								"services",
+								"timeline",
+								"London,UK",
+								"2020-10-01",
+								"2020-12-31"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Weatherapi}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "Get BTC/USDT price",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var bitcoinPrice = pm.response.json().price;",
+									"",
+									"if (parseFloat(bitcoinPrice) > 40000) {",
+									"    pm.test(\"Тест пройшов успішно -  Можна продавати\", function () {",
+									"        pm.expect(true).to.be.true;",
+									"    });",
+									"} else {",
+									"    pm.test(\"Тест не пройшов - мало треба почекати\", function () {",
+									"        pm.expect(false).to.be.true; ",
+									"    });",
+									"",
+									"   ",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT",
+							"protocol": "https",
+							"host": [
+								"api",
+								"binance",
+								"com"
+							],
+							"path": [
+								"api",
+								"v3",
+								"ticker",
+								"price"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTCUSDT"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
