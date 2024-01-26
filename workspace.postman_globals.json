@@ -1,0 +1,33 @@
+{
+	"id": "d958cb57-27f7-48a2-8773-65b5f4aba850",
+	"values": [
+		{
+			"key": "news_api_key",
+			"value": "da9823bba9614176ae4a1f5ea5449b6f",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "Weatherapi",
+			"value": "S2JQXMAZPKBSHJSD8KNWLGYYE",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "bitcoinPrice",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "UAHprice",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2024-01-26T17:58:53.749Z",
+	"_postman_exported_using": "Postman/10.22.6"
+}
