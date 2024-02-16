@@ -8,6 +8,152 @@
 	},
 	"item": [
 		{
+			"name": "Checking IP",
+			"item": [
+				{
+					"name": "My ip check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let country = pm.response.json().cc;",
+									"pm.globals.set(\"country\", country);",
+									"",
+									"let myip = pm.response.json().ip;",
+									"pm.globals.set(\"myip\", myip);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.myip.com",
+							"protocol": "https",
+							"host": [
+								"api",
+								"myip",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "https://restcountries.com/",
+			"item": [
+				{
+					"name": "Get all countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://restcountries.com/v3.1/all",
+							"protocol": "https",
+							"host": [
+								"restcountries",
+								"com"
+							],
+							"path": [
+								"v3.1",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  country by any translation name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://restcountries.com/v3.1/translation/US",
+							"protocol": "https",
+							"host": [
+								"restcountries",
+								"com"
+							],
+							"path": [
+								"v3.1",
+								"translation",
+								"US"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  country by capital city",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://restcountries.com/v3.1/capital/Kyiv",
+							"protocol": "https",
+							"host": [
+								"restcountries",
+								"com"
+							],
+							"path": [
+								"v3.1",
+								"capital",
+								"Kyiv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  country by code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"let jsonData = pm.response.json();",
+									"let capital = jsonData[0].capital[0];",
+									"pm.globals.set(\"capital\", capital);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://restcountries.com/v3.1/alpha?codes={{country}}",
+							"protocol": "https",
+							"host": [
+								"restcountries",
+								"com"
+							],
+							"path": [
+								"v3.1",
+								"alpha"
+							],
+							"query": [
+								{
+									"key": "codes",
+									"value": "{{country}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Newsapi",
 			"item": [
 				{
@@ -46,7 +192,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://newsapi.org/v2/top-headlines?country=ua&apiKey={{news_api_key}}",
+							"raw": "https://newsapi.org/v2/top-headlines?country={{country}}&apiKey={{news_api_key}}",
 							"protocol": "https",
 							"host": [
 								"newsapi",
@@ -59,7 +205,7 @@
 							"query": [
 								{
 									"key": "country",
-									"value": "ua"
+									"value": "{{country}}"
 								},
 								{
 									"key": "apiKey",
@@ -101,7 +247,40 @@
 		},
 		{
 			"name": "weather",
-			"item": []
+			"item": [
+				{
+					"name": "Check weather in your capital city",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://goweather.herokuapp.com/weather/{{capital}}",
+							"protocol": "https",
+							"host": [
+								"goweather",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"weather",
+								"{{capital}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Binance",
@@ -259,71 +438,153 @@
 			]
 		},
 		{
-			"name": "https://restcountries.com/",
+			"name": "https://api.chess.com",
 			"item": [
 				{
-					"name": "Get all countries",
+					"name": "get player",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://restcountries.com/v3.1/all",
+							"raw": "https://api.chess.com/pub/player/erik",
 							"protocol": "https",
 							"host": [
-								"restcountries",
+								"api",
+								"chess",
 								"com"
 							],
 							"path": [
-								"v3.1",
-								"all"
+								"pub",
+								"player",
+								"erik"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get  country by any translation name",
+					"name": "titled players",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://restcountries.com/v3.1/translation/Ukrajina",
+							"raw": "https://api.chess.com/pub/titled/GM",
 							"protocol": "https",
 							"host": [
-								"restcountries",
+								"api",
+								"chess",
 								"com"
 							],
 							"path": [
-								"v3.1",
-								"translation",
-								"Ukrajina"
+								"pub",
+								"titled",
+								"GM"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get  country by capital city",
+					"name": "get player games",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://restcountries.com/v3.1/capital/Kyiv",
+							"raw": "https://api.chess.com/pub/player/erik/games",
 							"protocol": "https",
 							"host": [
-								"restcountries",
+								"api",
+								"chess",
 								"com"
 							],
 							"path": [
-								"v3.1",
-								"capital",
-								"Kyiv"
+								"pub",
+								"player",
+								"erik",
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://api.chess.com/pub/player/erik/games/to-move",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.chess.com/pub/player/erik/games/to-move",
+							"protocol": "https",
+							"host": [
+								"api",
+								"chess",
+								"com"
+							],
+							"path": [
+								"pub",
+								"player",
+								"erik",
+								"games",
+								"to-move"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.chess.com/pub/country/{{country}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"chess",
+								"com"
+							],
+							"path": [
+								"pub",
+								"country",
+								"{{country}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get country Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.chess.com/pub/country/{{country}}/players",
+							"protocol": "https",
+							"host": [
+								"api",
+								"chess",
+								"com"
+							],
+							"path": [
+								"pub",
+								"country",
+								"{{country}}",
+								"players"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
